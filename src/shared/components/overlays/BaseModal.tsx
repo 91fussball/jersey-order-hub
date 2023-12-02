@@ -12,6 +12,8 @@ import {
 import { Button } from '@/shared/components/buttons/Button';
 import { useGetColor } from '@/shared/hooks/useGetColor';
 
+import { Typography } from '../typography/Typography';
+
 interface BaseModalProps extends MantineModalProps {
     cancelButtonRef?: React.RefObject<HTMLButtonElement>;
     cancelText?: string;
@@ -75,6 +77,8 @@ const BaseModal: FC<BaseModalProps> = ({
             <Space h="md" />
 
             {children}
+
+            <Space h="sm" />
 
             <Divider />
 

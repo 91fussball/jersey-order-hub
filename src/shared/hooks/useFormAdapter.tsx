@@ -42,7 +42,7 @@ export type UseFormAdapter<FormValue extends FieldValues> = {
 };
 
 export type RenderProps<T extends FieldValues, N extends FieldPath<T>> = {
-    field: ControllerRenderProps<T, N>;
+    field: ControllerRenderProps<T, N> & { error?: string };
     fieldState: ControllerFieldState;
     formState: UseFormStateReturn<T>;
 };
@@ -78,7 +78,20 @@ export const useFormAdapter = <FormValue extends FieldValues>({
         name,
         render,
     }: WrapWithControllerProps<T, N>) => {
-        return <Controller control={control} name={name} render={render} />;
+        return (
+            <Controller
+                control={control}
+                name={name}
+                render={(args) => {
+                    const { error } = args.fieldState;
+
+                    return render({
+                        ...args,
+                        field: { ...args.field, error: error?.message },
+                    });
+                }}
+            />
+        );
     };
 
     return {

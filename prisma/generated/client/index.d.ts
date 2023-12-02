@@ -21,6 +21,7 @@ export type orders = {
   back_number: number
   is_paid: boolean
   jersey_type: string
+  jersey_name: string
   name: string
   payment: number
   phone_number: string
@@ -820,6 +821,7 @@ export namespace Prisma {
     back_number: number | null
     is_paid: boolean | null
     jersey_type: string | null
+    jersey_name: string | null
     name: string | null
     payment: number | null
     phone_number: string | null
@@ -834,6 +836,7 @@ export namespace Prisma {
     back_number: number | null
     is_paid: boolean | null
     jersey_type: string | null
+    jersey_name: string | null
     name: string | null
     payment: number | null
     phone_number: string | null
@@ -848,6 +851,7 @@ export namespace Prisma {
     back_number: number
     is_paid: number
     jersey_type: number
+    jersey_name: number
     name: number
     payment: number
     phone_number: number
@@ -874,6 +878,7 @@ export namespace Prisma {
     back_number?: true
     is_paid?: true
     jersey_type?: true
+    jersey_name?: true
     name?: true
     payment?: true
     phone_number?: true
@@ -888,6 +893,7 @@ export namespace Prisma {
     back_number?: true
     is_paid?: true
     jersey_type?: true
+    jersey_name?: true
     name?: true
     payment?: true
     phone_number?: true
@@ -902,6 +908,7 @@ export namespace Prisma {
     back_number?: true
     is_paid?: true
     jersey_type?: true
+    jersey_name?: true
     name?: true
     payment?: true
     phone_number?: true
@@ -1004,6 +1011,7 @@ export namespace Prisma {
     back_number: number
     is_paid: boolean
     jersey_type: string
+    jersey_name: string
     name: string
     payment: number
     phone_number: string
@@ -1037,6 +1045,7 @@ export namespace Prisma {
     back_number?: boolean
     is_paid?: boolean
     jersey_type?: boolean
+    jersey_name?: boolean
     name?: boolean
     payment?: boolean
     phone_number?: boolean
@@ -1741,6 +1750,7 @@ export namespace Prisma {
     back_number: 'back_number',
     is_paid: 'is_paid',
     jersey_type: 'jersey_type',
+    jersey_name: 'jersey_name',
     name: 'name',
     payment: 'payment',
     phone_number: 'phone_number',
@@ -1781,6 +1791,7 @@ export namespace Prisma {
     back_number?: IntFilter | number
     is_paid?: BoolFilter | boolean
     jersey_type?: StringFilter | string
+    jersey_name?: StringFilter | string
     name?: StringFilter | string
     payment?: IntFilter | number
     phone_number?: StringFilter | string
@@ -1795,6 +1806,7 @@ export namespace Prisma {
     back_number?: SortOrder
     is_paid?: SortOrder
     jersey_type?: SortOrder
+    jersey_name?: SortOrder
     name?: SortOrder
     payment?: SortOrder
     phone_number?: SortOrder
@@ -1813,6 +1825,7 @@ export namespace Prisma {
     back_number?: SortOrder
     is_paid?: SortOrder
     jersey_type?: SortOrder
+    jersey_name?: SortOrder
     name?: SortOrder
     payment?: SortOrder
     phone_number?: SortOrder
@@ -1835,6 +1848,7 @@ export namespace Prisma {
     back_number?: IntWithAggregatesFilter | number
     is_paid?: BoolWithAggregatesFilter | boolean
     jersey_type?: StringWithAggregatesFilter | string
+    jersey_name?: StringWithAggregatesFilter | string
     name?: StringWithAggregatesFilter | string
     payment?: IntWithAggregatesFilter | number
     phone_number?: StringWithAggregatesFilter | string
@@ -1849,6 +1863,7 @@ export namespace Prisma {
     back_number?: number
     is_paid?: boolean
     jersey_type?: string
+    jersey_name?: string
     name?: string
     payment?: number
     phone_number: string
@@ -1863,6 +1878,7 @@ export namespace Prisma {
     back_number?: number
     is_paid?: boolean
     jersey_type?: string
+    jersey_name?: string
     name?: string
     payment?: number
     phone_number: string
@@ -1877,6 +1893,7 @@ export namespace Prisma {
     back_number?: IntFieldUpdateOperationsInput | number
     is_paid?: BoolFieldUpdateOperationsInput | boolean
     jersey_type?: StringFieldUpdateOperationsInput | string
+    jersey_name?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     payment?: IntFieldUpdateOperationsInput | number
     phone_number?: StringFieldUpdateOperationsInput | string
@@ -1891,6 +1908,7 @@ export namespace Prisma {
     back_number?: IntFieldUpdateOperationsInput | number
     is_paid?: BoolFieldUpdateOperationsInput | boolean
     jersey_type?: StringFieldUpdateOperationsInput | string
+    jersey_name?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     payment?: IntFieldUpdateOperationsInput | number
     phone_number?: StringFieldUpdateOperationsInput | string
@@ -1905,6 +1923,7 @@ export namespace Prisma {
     back_number?: IntFieldUpdateOperationsInput | number
     is_paid?: BoolFieldUpdateOperationsInput | boolean
     jersey_type?: StringFieldUpdateOperationsInput | string
+    jersey_name?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     payment?: IntFieldUpdateOperationsInput | number
     phone_number?: StringFieldUpdateOperationsInput | string
@@ -1919,6 +1938,7 @@ export namespace Prisma {
     back_number?: IntFieldUpdateOperationsInput | number
     is_paid?: BoolFieldUpdateOperationsInput | boolean
     jersey_type?: StringFieldUpdateOperationsInput | string
+    jersey_name?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     payment?: IntFieldUpdateOperationsInput | number
     phone_number?: StringFieldUpdateOperationsInput | string
@@ -1974,6 +1994,7 @@ export namespace Prisma {
     back_number?: SortOrder
     is_paid?: SortOrder
     jersey_type?: SortOrder
+    jersey_name?: SortOrder
     name?: SortOrder
     payment?: SortOrder
     phone_number?: SortOrder
@@ -1993,6 +2014,7 @@ export namespace Prisma {
     back_number?: SortOrder
     is_paid?: SortOrder
     jersey_type?: SortOrder
+    jersey_name?: SortOrder
     name?: SortOrder
     payment?: SortOrder
     phone_number?: SortOrder
@@ -2007,6 +2029,7 @@ export namespace Prisma {
     back_number?: SortOrder
     is_paid?: SortOrder
     jersey_type?: SortOrder
+    jersey_name?: SortOrder
     name?: SortOrder
     payment?: SortOrder
     phone_number?: SortOrder

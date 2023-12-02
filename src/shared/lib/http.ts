@@ -1,5 +1,3 @@
-import { getSession } from 'next-auth/react';
-
 import axios, { AxiosRequestConfig } from 'axios';
 
 type BaseRequestArgs = {
@@ -30,12 +28,6 @@ const http = axios.create({
 
 http.interceptors.request.use(
     async (config) => {
-        const session = await getSession();
-
-        if (session) {
-            config.headers.Authorization = `Bearer ${session.token}`;
-        }
-
         return config;
     },
     (error) => {

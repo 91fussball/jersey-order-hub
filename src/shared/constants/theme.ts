@@ -14,8 +14,8 @@ const baseTheme = createTheme({
     black: 'hsl(0, 0%, 15%)',
     colors,
     fontFamily: `${roboto.style.fontFamily}, sans-serif`,
-    primaryColor: 'yellow',
-    primaryShade: 2,
+    primaryColor: 'green',
+    primaryShade: 5,
     scale: 0.98,
     white: 'hsl(0, 0%, 100%)',
 });

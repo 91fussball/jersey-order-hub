@@ -91,6 +91,7 @@ exports.Prisma.OrdersScalarFieldEnum = {
   back_number: 'back_number',
   is_paid: 'is_paid',
   jersey_type: 'jersey_type',
+  jersey_name: 'jersey_name',
   name: 'name',
   payment: 'payment',
   phone_number: 'phone_number',

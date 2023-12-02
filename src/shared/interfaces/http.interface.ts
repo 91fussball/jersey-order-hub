@@ -4,14 +4,16 @@ export type BasicParams = {
     filter?: string;
     limit?: number;
     q?: string;
-    skip?: number;
+    page?: number;
 };
 
 export type ListResponse<T> = {
     data: T;
-    limit: null | number;
-    offset: number;
-    total: number;
+    meta: {
+        limit: null | number;
+        offset: number;
+        total: number;
+    };
 };
 
 export type ErrorWithResponseKey = {
