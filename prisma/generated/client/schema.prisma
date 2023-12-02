@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model orders {
+  id           String    @id
+  back_number  Int       @default(0)
+  is_paid      Boolean   @default(false)
+  jersey_type  String    @default("NON-GK")
+  name         String    @default("")
+  payment      Int       @default(0)
+  phone_number String    
+  longsleeve   Boolean   @default(false)    
+  size         String    @default("L")
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @default(now()) @updatedAt
+}

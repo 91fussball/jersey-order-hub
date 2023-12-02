@@ -1,0 +1,20 @@
+{
+    "extends": ["next/core-web-vitals", "import", "unused-imports"],
+    "rules": {
+        "import/no-unresolved": ["error", { "commonjs": true }],
+        "import/named": "error",
+        "import/default": "error",
+        "import/namespace": "error",
+        "import/export": "error",
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": [
+            "error",
+            {
+                "vars": "all",
+                "varsIgnorePattern": "^_",
+                "args": "after-used",
+                "argsIgnorePattern": "^_"
+            }
+        ]
+    }
+}

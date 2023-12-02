@@ -1,0 +1,4 @@
+export const ENVS = {
+    API_BASE: process.env.NEXT_PUBLIC_API_ENDPOINT,
+    STORAGE_ID: process.env.NEXT_PUBLIC_LOCAL_STORAGE_IDENTIFIER,
+};
