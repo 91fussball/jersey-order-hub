@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
 import {
+    ButtonProps,
     Divider,
     Group,
     Modal as MantineModal,
@@ -11,8 +12,6 @@ import {
 
 import { Button } from '@/shared/components/buttons/Button';
 import { useGetColor } from '@/shared/hooks/useGetColor';
-
-import { Typography } from '../typography/Typography';
 
 interface BaseModalProps extends MantineModalProps {
     cancelButtonRef?: React.RefObject<HTMLButtonElement>;
@@ -25,14 +24,8 @@ interface BaseModalProps extends MantineModalProps {
     onClose: () => void;
     onOk?: () => void;
     opened: boolean;
-    okButtonProps?: Omit<
-        React.ComponentPropsWithoutRef<typeof Button>,
-        'children'
-    >;
-    cancelButtonProps?: Omit<
-        React.ComponentPropsWithoutRef<typeof Button>,
-        'children'
-    >;
+    okButtonProps?: Omit<ButtonProps, 'children'>;
+    cancelButtonProps?: Omit<ButtonProps, 'children'>;
 }
 
 const BaseModal: FC<BaseModalProps> = ({
@@ -95,8 +88,8 @@ const BaseModal: FC<BaseModalProps> = ({
                             ref={cancelButtonRef}
                             size="md"
                             type="button"
-                            {...cancelButtonProps}
                             onClick={onClose}
+                            {...cancelButtonProps}
                         >
                             {cancelText || 'Cancel'}
                         </Button>

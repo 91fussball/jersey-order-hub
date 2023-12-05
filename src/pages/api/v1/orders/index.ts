@@ -20,6 +20,9 @@ export default async function handler(
             prisma.orders.findMany({
                 take: intLimit,
                 skip,
+                orderBy: {
+                    created_at: 'desc',
+                },
             }),
             prisma.orders.count(),
         ]);

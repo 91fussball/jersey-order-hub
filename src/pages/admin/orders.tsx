@@ -1,9 +1,14 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
 
+import { useAddOrderMutation } from '@/domains/orders/hooks/mutation/useOrderMutation';
 import { useAddOrderForm } from '@/domains/orders/hooks/useAddOrderForm';
 import { useOrdersDatatable } from '@/domains/orders/hooks/useOrdersDatatable';
-import { getOrders, OrderType } from '@/domains/orders/services/order.service';
+import {
+    AddOrderArgsType,
+    getOrders,
+    OrderType,
+} from '@/domains/orders/services/order.service';
 
 import { Button } from '@/shared/components/buttons/Button';
 import { Datatable } from '@/shared/components/datas/Datatable';
@@ -26,29 +31,46 @@ const AdminOrdersPage = ({ orders }: AdminOrderPageProps) => {
         value: addModalShow,
         setTrue: showAddModal,
         setFalse: hideAddModal,
-    } = useToggle(true);
+    } = useToggle(false);
     const {
         value: paymetnShow,
         setTrue: showPayment,
         setFalse: hidePayment,
-    } = useToggle();
+    } = useToggle(true);
 
-    const { records, totalRecords, columns, fetching, perPage, page, setPage } =
-        useOrdersDatatable({ initialData: orders });
+    const { mutate, isLoading } = useAddOrderMutation({
+        onSuccess: () => {
+            hideAddModal();
+            refetch();
+        },
+    });
+    const {
+        columns,
+        fetching,
+        page,
+        perPage,
+        records,
+        refetch,
+        setPage,
+        totalRecords,
+    } = useOrdersDatatable({ initialData: orders });
 
     const order = async () => {
         const formValid = await form.trigger();
+        if (!formValid) return;
 
         const values = form.getValues();
-        console.log(values);
+        if (values.is_paid) values.payment = 250000;
+
+        mutate(values as AddOrderArgsType);
     };
 
     return (
         <Box h="100vh" w="100vw" bg="white" p="3rem">
             <VStack>
                 <HStack justify="space-between" align="center">
-                    <Typography as="h1">Jersey Orders</Typography>
-                    <Button onClick={showAddModal}>Add New Order</Button>
+                    <Typography as="h1">91Fussball Jersey List</Typography>
+                    <Button onClick={showAddModal}>Tambah Pesanan</Button>
                 </HStack>
 
                 <Datatable
@@ -63,12 +85,13 @@ const AdminOrdersPage = ({ orders }: AdminOrderPageProps) => {
 
                 <BaseModal
                     opened={addModalShow}
+                    onOk={order}
                     title="Add Order"
+                    okButtonProps={{ loading: isLoading }}
                     onClose={() => {
                         hideAddModal();
                         form.clearErrors();
                     }}
-                    onOk={order}
                 >
                     <FormProvider {...form}>
                         <VStack>
@@ -80,7 +103,23 @@ const AdminOrdersPage = ({ orders }: AdminOrderPageProps) => {
                                         <TextInput
                                             placeholder="Denindra Asthyfal"
                                             required
-                                            label="Name"
+                                            label="Nama"
+                                            size="sm"
+                                            w="100%"
+                                            {...field}
+                                        />
+                                    );
+                                },
+                            })}
+                            {wrapWithController({
+                                control: form.control,
+                                name: 'phone_number',
+                                render: ({ field, fieldState: { error } }) => {
+                                    return (
+                                        <TextInput
+                                            placeholder="08595xxxxxx"
+                                            required
+                                            label="Nomor Telepon"
                                             size="sm"
                                             w="100%"
                                             {...field}
@@ -123,7 +162,7 @@ const AdminOrdersPage = ({ orders }: AdminOrderPageProps) => {
                                     name: 'payment',
                                     render: ({ field }) => (
                                         <NumberInput
-                                            label="Payment"
+                                            label="Pembayaran"
                                             placeholder="Rp. 250000"
                                             prefix="Rp. "
                                             size="sm"

@@ -24,7 +24,12 @@ export default function App({
             <MantineProvider theme={theme}>
                 <Component {...pageProps} />
 
-                <ToastContainer position="top-center" draggable pauseOnHover />
+                <ToastContainer
+                    autoClose={5000}
+                    draggable
+                    pauseOnHover
+                    position="top-center"
+                />
             </MantineProvider>
             <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </QueryClientProvider>

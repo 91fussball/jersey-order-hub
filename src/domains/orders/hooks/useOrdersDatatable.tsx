@@ -13,7 +13,7 @@ export const useOrdersDatatable = (props?: {
     initialData: ListResponse<OrderType[]>;
 }) => {
     const { page, perPage, ...pagination } = usePagination();
-    const { data, isFetching } = useOrdersQuery({
+    const { data, isFetching, ...query } = useOrdersQuery({
         params: { page, limit: perPage },
     });
 
@@ -25,46 +25,46 @@ export const useOrdersDatatable = (props?: {
             },
             {
                 accessor: 'name',
-                title: 'Name',
+                title: 'Nama',
                 width: 250,
             },
             {
                 accessor: 'phone_number',
-                title: 'Phone Number',
+                title: 'Nomor Telepon',
             },
             {
                 accessor: 'back_number',
-                title: 'Jersey Number',
+                title: 'Nomor Punggung',
             },
             {
                 accessor: 'jersey_name',
-                title: 'Jersey Name',
+                title: 'Nama Punggung',
             },
             {
                 accessor: 'size',
-                title: 'Size',
+                title: 'Ukuran',
             },
             {
                 accessor: 'jersey_type',
-                title: 'Jersey Type',
+                title: 'Tipe Jersey',
             },
             {
                 accessor: 'loongsleve',
-                title: 'Longsleeve',
+                title: 'Lengan Panjang',
                 render: ({ longsleeve }: OrderType) => {
                     return longsleeve ? '✅' : '❌';
                 },
             },
             {
                 accessor: 'is_paid',
-                title: 'Paid',
+                title: 'Lunas',
                 render: ({ is_paid }: OrderType) => {
                     return is_paid ? '✅' : '❌';
                 },
             },
             {
                 accessor: 'payment',
-                title: 'Payment',
+                title: 'Pembayaran',
                 render: ({ payment }: OrderType) => {
                     return formatToRupiah(payment);
                 },
@@ -82,6 +82,7 @@ export const useOrdersDatatable = (props?: {
             records: data?.data,
             totalRecords: data?.meta.total,
             ...pagination,
+            ...query,
         };
     }, [pagination, data, isFetching]);
 };
