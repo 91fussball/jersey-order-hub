@@ -107,6 +107,9 @@ exports.Prisma.SortOrder = {
 };
 
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 

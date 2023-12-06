@@ -1180,6 +1180,22 @@ export namespace Prisma {
     ): Prisma__ordersClient<ordersGetPayload<T>>
 
     /**
+     * Create many Orders.
+     *     @param {ordersCreateManyArgs} args - Arguments to create many Orders.
+     *     @example
+     *     // Create many Orders
+     *     const orders = await prisma.orders.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends ordersCreateManyArgs>(
+      args?: SelectSubset<T, ordersCreateManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
      * Delete a Orders.
      * @param {ordersDeleteArgs} args - Arguments to delete one Orders.
      * @example
@@ -1647,6 +1663,18 @@ export namespace Prisma {
 
 
   /**
+   * orders createMany
+   */
+  export type ordersCreateManyArgs = {
+    /**
+     * The data used to create many orders.
+     */
+    data: Enumerable<ordersCreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
    * orders update
    */
   export type ordersUpdateArgs = {
@@ -1772,6 +1800,9 @@ export namespace Prisma {
 
 
   export const TransactionIsolationLevel: {
+    ReadUncommitted: 'ReadUncommitted',
+    ReadCommitted: 'ReadCommitted',
+    RepeatableRead: 'RepeatableRead',
     Serializable: 'Serializable'
   };
 
@@ -1916,6 +1947,21 @@ export namespace Prisma {
     size?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ordersCreateManyInput = {
+    id: string
+    back_number?: number
+    is_paid?: boolean
+    jersey_type?: string
+    jersey_name?: string
+    name?: string
+    payment?: number
+    phone_number: string
+    longsleeve?: boolean
+    size?: string
+    created_at?: Date | string
+    updated_at?: Date | string
   }
 
   export type ordersUpdateManyMutationInput = {
