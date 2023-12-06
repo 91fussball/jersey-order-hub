@@ -41,12 +41,19 @@ export default async function handler(
     }
 
     if (req.method === 'POST') {
-        const data = { ...req.body, id: nanoid(5) };
-        const response = await prisma.orders.create({ data });
+        try {
+            const data = { ...req.body, id: nanoid(5) };
+            const response = await prisma.orders.create({ data });
 
-        res.status(200).json({
-            message: 'Success',
-            data: response,
-        });
+            res.status(200).json({
+                message: 'Success',
+                data: response,
+            });
+        } catch (error) {
+            res.status(500).json({
+                message: 'Error',
+                data: error,
+            });
+        }
     }
 }
