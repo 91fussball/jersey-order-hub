@@ -18,7 +18,7 @@ export type OrderType = {
 export type AddOrderArgsType = Pick<OrderType, 'name' | 'is_paid' | 'payment'>;
 
 export const addOrder = async (body: AddOrderArgsType): Promise<any> => {
-    try { 
+    try {
         const response = await postRequest({
             url: `${ENVS.API_BASE}/api/v1/orders`,
             data: body,

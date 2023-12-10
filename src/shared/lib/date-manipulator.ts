@@ -94,7 +94,10 @@ export const parseISO = (date: string): Date => {
     return dayjs(date).toDate();
 };
 
-export const parseDateToString = (date: Date, format: string): string => {
+export const parseDateToString = (
+    date: Date | string,
+    format: string,
+): string => {
     return dayjs(date).format(format);
 };
 

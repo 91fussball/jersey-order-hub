@@ -32,11 +32,6 @@ const AdminOrdersPage = ({ orders }: AdminOrderPageProps) => {
         setTrue: showAddModal,
         setFalse: hideAddModal,
     } = useToggle(false);
-    const {
-        value: paymetnShow,
-        setTrue: showPayment,
-        setFalse: hidePayment,
-    } = useToggle(true);
 
     const { mutate, isLoading } = useAddOrderMutation({
         onSuccess: () => {
@@ -60,7 +55,8 @@ const AdminOrdersPage = ({ orders }: AdminOrderPageProps) => {
         if (!formValid) return;
 
         const values = form.getValues();
-        if (values.is_paid) values.payment = 250000;
+        values.payment = values.is_paid ? 250000 : 150000;
+        values.phone_number = `+62${values.phone_number}`;
 
         mutate(values as AddOrderArgsType);
     };
@@ -116,10 +112,12 @@ const AdminOrdersPage = ({ orders }: AdminOrderPageProps) => {
                                 name: 'phone_number',
                                 render: ({ field, fieldState: { error } }) => {
                                     return (
-                                        <TextInput
-                                            placeholder="08595xxxxxx"
-                                            required
+                                        <NumberInput
                                             label="Nomor Telepon"
+                                            placeholder="8595xxxxxx"
+                                            leftSection="+62"
+                                            required
+                                            rightSection={<></>}
                                             size="sm"
                                             w="100%"
                                             {...field}
@@ -144,10 +142,6 @@ const AdminOrdersPage = ({ orders }: AdminOrderPageProps) => {
                                                     const checked =
                                                         e.target.checked;
 
-                                                    checked
-                                                        ? hidePayment()
-                                                        : showPayment();
-
                                                     field.onChange(checked);
                                                 }}
                                             />
@@ -155,23 +149,6 @@ const AdminOrdersPage = ({ orders }: AdminOrderPageProps) => {
                                     );
                                 },
                             })}
-
-                            {paymetnShow &&
-                                wrapWithController({
-                                    control: form.control,
-                                    name: 'payment',
-                                    render: ({ field }) => (
-                                        <NumberInput
-                                            label="Pembayaran"
-                                            placeholder="Rp. 250000"
-                                            prefix="Rp. "
-                                            size="sm"
-                                            step={10000}
-                                            w="100%"
-                                            {...field}
-                                        />
-                                    ),
-                                })}
                         </VStack>
                     </FormProvider>
                 </BaseModal>

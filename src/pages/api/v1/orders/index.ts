@@ -8,18 +8,29 @@ export default async function handler(
     res: NextApiResponse,
 ) {
     if (req.method === 'GET') {
-        const { page, limit } = req.query;
+        const { page, limit, id, name, phone_number, jersey_type, size } =
+            req.query;
+
         if (!page) res.status(400).json({ message: 'page is required' });
         if (!limit) res.status(400).json({ message: 'limit is required' });
 
         const intLimit = parseInt(limit as string);
         const intPage = parseInt(page as string);
         const skip = (intPage - 1) * intLimit;
+        const where: Record<string, any> = {};
+
+        if (id) where.id = { contains: id };
+        if (name) where.name = { contains: name };
+        if (phone_number) where.phone_number = { contains: phone_number };
+
+        if (jersey_type) where.jersey_type = jersey_type;
+        if (size) where.size = size;
 
         const [response, total] = await Promise.all([
             prisma.orders.findMany({
-                take: intLimit,
                 skip,
+                take: intLimit,
+                where,
                 orderBy: {
                     created_at: 'desc',
                 },
@@ -50,6 +61,8 @@ export default async function handler(
                 data: response,
             });
         } catch (error) {
+            console.log(error);
+
             res.status(500).json({
                 message: 'Error',
                 data: error,
