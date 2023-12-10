@@ -7855,12 +7855,10 @@ ${(0, ot.default)(
             return (
                 this.args &&
                     n.push(
-                        ...this.args
-                            .collectErrors()
-                            .map((i) => ({
-                                ...i,
-                                path: [this.name, ...i.path],
-                            })),
+                        ...this.args.collectErrors().map((i) => ({
+                            ...i,
+                            path: [this.name, ...i.path],
+                        })),
                     ),
                 { fieldErrors: r, argErrors: n }
             );
@@ -8017,19 +8015,15 @@ ${(0, ot.default)(n.toString(), sr)}
             ? t.concat(
                   this.value.flatMap((r, n) =>
                       r instanceof ae
-                          ? r
-                                .collectErrors()
-                                .map((i) => ({
-                                    ...i,
-                                    path: [this.key, String(n), ...i.path],
-                                }))
+                          ? r.collectErrors().map((i) => ({
+                                ...i,
+                                path: [this.key, String(n), ...i.path],
+                            }))
                           : r instanceof ue
-                          ? r
-                                .collectErrors()
-                                .map((i) => ({
-                                    ...i,
-                                    path: [this.key, ...i.path],
-                                }))
+                          ? r.collectErrors().map((i) => ({
+                                ...i,
+                                path: [this.key, ...i.path],
+                            }))
                           : [],
                   ),
               )
